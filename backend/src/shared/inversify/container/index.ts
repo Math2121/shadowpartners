@@ -1,6 +1,5 @@
-import "reflect-metadata"
 import { Container } from "inversify";
-
+import "reflect-metadata"
 import TYPES from "./types";
 import { UploadServices } from "../../../services/UploadServices";
 import { UploadServicesInterface } from "../../../services/interface/UploadServicesInterface";

@@ -22,9 +22,9 @@ class UploadRepository implements UploadRepositoryInterface {
 
     }
 
-    async create(dataParam: Prisma.FileCreateInput): Promise<void> {
+    async create(dataParam: Prisma.FileCreateInput): Promise<File> {
 
-        await prismaClient.file.create({
+        const file = await prismaClient.file.create({
             data: {
                 city: dataParam.city,
                 country: dataParam.country,
@@ -32,6 +32,8 @@ class UploadRepository implements UploadRepositoryInterface {
                 name: dataParam.name
             }
         })
+
+        return file
 
     }
 

@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import { UploadServicesInterface } from "./interface/UploadServicesInterface";
 import TYPES from "../shared/inversify/container/types";
-import { UploadRepositoryInterface } from "repository/interfaces/UploadRepositoryInterface";
+import { UploadRepositoryInterface } from "../repository/interfaces/UploadRepositoryInterface";
 
 import { File, Prisma } from "@prisma/client";
 import { ERROR500, STANDARD } from "../helpers/constants";
@@ -9,10 +9,9 @@ import { ERROR500, STANDARD } from "../helpers/constants";
 import { Readable } from 'stream'
 import readline from "readline"
 
-
-
 @injectable()
 export class UploadServices implements UploadServicesInterface {
+
     constructor(@inject(TYPES.UploadRepository) private uploadRepository: UploadRepositoryInterface) { }
 
 
@@ -20,6 +19,9 @@ export class UploadServices implements UploadServicesInterface {
 
 
         try {
+            if (!buffer || typeof buffer !== 'string') {
+               throw new Error(ERROR500.message)
+            }
             const parsedData: Prisma.FileCreateInput[] = [];
 
             const bufferStream = new Readable();
