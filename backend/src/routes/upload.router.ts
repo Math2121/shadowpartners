@@ -27,38 +27,10 @@ export default async function (fastify: FastifyInstance) {
         preHandler: upload.single('file')
     })
 
+    fastify.route({
+        method: 'GET',
+        url: '/',
+        handler: controller.search
+    })
 
-
-    // fastify.route({
-    //     method: 'GET',
-    //     url: '/:event_id',
-    //     schema: GetOneEventSchema,
-    //     handler: controller.getOneEvent
-    // })
-
-
-    // fastify.route({
-    //     method: 'GET',
-    //     url: '/',
-    //     schema: GetAllSchema,
-    //     handler: controller.getAllEvent
-    // })
-
-
-
-    // fastify.route({
-    //     method: 'PUT',
-    //     url: '/:event_id',
-    //     schema: UpdateEventSchema,
-    //     handler: controller.updateOneEvent
-    // })
-
-
-
-    // fastify.route({
-    //     method: 'DELETE',
-    //     url: '/delete/:event_id',
-    //     schema: DeleteOneEventSchema,
-    //     handler: controller.deleteOneEvent
-    // })
 }

@@ -8,6 +8,7 @@ import { ERROR500, STANDARD } from "../helpers/constants";
 
 import { Readable } from 'stream'
 import readline from "readline"
+import { JsonArray } from "@prisma/client/runtime/library";
 
 
 @injectable()
@@ -15,7 +16,7 @@ export class UploadServices implements UploadServicesInterface {
     constructor(@inject(TYPES.UploadRepository) private uploadRepository: UploadRepositoryInterface) { }
 
 
-    async readFileAndSave(buffer: any): Promise<{ status: number; message: string; }> {
+    async readFileAndSave(buffer: string): Promise<{ status: number; message: string; }> {
 
 
         try {
@@ -41,7 +42,7 @@ export class UploadServices implements UploadServicesInterface {
                 })
             }
 
-     
+
             parsedData.map(async (row) => {
                 await this.uploadRepository.create(row)
             })
@@ -61,5 +62,13 @@ export class UploadServices implements UploadServicesInterface {
 
     }
 
+    async searchAllData(query: string): Promise<{ status: number; data: JsonArray; }> {
+
+        const data = await this.uploadRepository.getAll(query)
+        return {
+            status: STANDARD.SUCCESS,
+            data
+        }
+    }
 
 }

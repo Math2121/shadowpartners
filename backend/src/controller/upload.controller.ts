@@ -17,7 +17,7 @@ declare module 'fastify' {
 }
 
 export const donwload = async (request: FastifyRequest, reply: FastifyReply) => {
-    const  {buffer}  = request.file;
+    const { buffer } = request.file;
 
     const response = await uploadServices.readFileAndSave(buffer)
 
@@ -29,16 +29,14 @@ export const donwload = async (request: FastifyRequest, reply: FastifyReply) => 
 
 
 
-// export const getAllEvent = async (request: FastifyRequest<{ Querystring: { page: string; } }>, reply: FastifyReply) => {
-//   try {
-//     const page = parseInt(request.query.page) || 1;
+export const search = async (request: FastifyRequest<{ Querystring: { q: string; } }>, reply: FastifyReply) => {
 
-//     const event = await eventGetAllUseCase.execute(page)
-//     reply.status(STANDARD.SUCCESS).send(event)
+    const page = request.query.q || '';
 
-//   } catch (error) {
-//     handleServerError(reply, error)
-//   }
-// }
+    const response = await uploadServices.searchAllData(page)
+    reply.status(response.status).send({
+        message: response.data
+    })
+}
 
 
