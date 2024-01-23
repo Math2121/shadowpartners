@@ -1,0 +1,57 @@
+{
+  "name": "app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn --transpile-only  ./src/index.ts | pino-pretty --colorize",
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/index.js | pino-pretty --colorize"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=17 <18"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.2.0",
+    "bcryptjs": "^2.4.3",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.22.0",
+    "fastify-auth": "^1.2.0",
+    "fastify-cors": "^6.1.0",
+    "fastify-formbody": "^5.3.0",
+    "fastify-helmet": "^7.1.0",
+    "fastify-multer": "^2.0.3",
+    "fastify-plugin": "^4.5.1",
+    "fastify-swagger": "^5.2.0",
+    "fluent-json-schema": "^4.1.2",
+    "inversify": "^6.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.29.4",
+    "node-fetch": "^2.7.0",
+    "pino": "^8.15.0",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.1.7",
+    "ts-node": "^10.9.1",
+    "tsyringe": "^4.8.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@fastify/cors": "^8.3.0",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/helmet": "^11.0.0",
+    "@fastify/swagger": "^8.9.0",
+    "@fastify/swagger-ui": "^1.9.3",
+    "@types/bcryptjs": "^2.4.3",
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/multer": "^1.4.11",
+    "@types/node-fetch": "^2.6.6",
+    "pino-pretty": "^10.2.0",
+    "prisma": "^5.2.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}

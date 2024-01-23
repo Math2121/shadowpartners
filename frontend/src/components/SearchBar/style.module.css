@@ -1,0 +1,23 @@
+.contentSearch {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+.inputSearch {
+  width: 340px;
+  background: white;
+
+  border-radius: 4px;
+  height: 20px;
+  padding: 10px;
+
+  border: none;
+  z-index: 1;
+}
+
+@media (max-width: 576px) {
+  .inputSearch {
+    width: 100%;
+  }
+}

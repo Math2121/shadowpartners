@@ -1,0 +1,33 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  
+}
+.information {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+}
+.tag {
+  display: inline-block;
+  background-color: #f1eeff;
+  color: #6558d3;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5em 0.75em;
+  line-height: 1;
+  border-radius: 6px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #141b22;
+  line-height: 1.25;
+}
+.info {
+  color: #a0a0a0;
+}
