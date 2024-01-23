@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only  ./src/index.ts | pino-pretty --colorize",
     "build": "tsc -p tsconfig.json",
-    "start": "node build/index.js | pino-pretty --colorize"
+    "start": "node build/index.js | pino-pretty --colorize",
+    "test": "jest"
   },
   "keywords": [],
   "engines": {
@@ -46,12 +46,16 @@
     "@fastify/helmet": "^11.0.0",
     "@fastify/swagger": "^8.9.0",
     "@fastify/swagger-ui": "^1.9.3",
+    "@jest/globals": "^29.7.0",
     "@types/bcryptjs": "^2.4.3",
+    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.3",
     "@types/multer": "^1.4.11",
     "@types/node-fetch": "^2.6.6",
+    "jest": "^29.7.0",
     "pino-pretty": "^10.2.0",
     "prisma": "^5.2.0",
+    "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0"
   }
 }
