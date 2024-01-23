@@ -3,12 +3,12 @@ import { UploadServicesInterface } from "./interface/UploadServicesInterface";
 import TYPES from "../shared/inversify/container/types";
 import { UploadRepositoryInterface } from "repository/interfaces/UploadRepositoryInterface";
 
-import { Prisma } from "@prisma/client";
+import { File, Prisma } from "@prisma/client";
 import { ERROR500, STANDARD } from "../helpers/constants";
 
 import { Readable } from 'stream'
 import readline from "readline"
-import { JsonArray } from "@prisma/client/runtime/library";
+
 
 
 @injectable()
@@ -62,7 +62,7 @@ export class UploadServices implements UploadServicesInterface {
 
     }
 
-    async searchAllData(query: string): Promise<{ status: number; data: JsonArray; }> {
+    async searchAllData(query: string): Promise<{ status: number; data: File[]; }> {
 
         const data = await this.uploadRepository.getAll(query)
         return {
