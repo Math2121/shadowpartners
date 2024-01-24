@@ -19,7 +19,7 @@ export class UploadServices implements UploadServicesInterface {
 
 
         try {
-            if (!buffer || typeof buffer !== 'string') {
+            if (!buffer || typeof buffer !== 'object') {
                throw new Error(ERROR500.message)
             }
             const parsedData: Prisma.FileCreateInput[] = [];
