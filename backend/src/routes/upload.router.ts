@@ -22,14 +22,14 @@ export default async function (fastify: FastifyInstance) {
 
     fastify.route({
         method: 'POST',
-        url: '/',
+        url: '/files',
         handler: controller.donwload,
         preHandler: upload.single('file')
     })
 
     fastify.route({
         method: 'GET',
-        url: '/',
+        url: '/users',
         handler: controller.search
     })
 

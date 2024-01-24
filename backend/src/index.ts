@@ -21,7 +21,7 @@ const startServer = async () => {
     server.register(multer.contentParser)
 
     server.register(async api => {
-      api.register(uploadRouter, { prefix: "/files" });
+      api.register(uploadRouter);
     }, { prefix: "/api" });
 
 
