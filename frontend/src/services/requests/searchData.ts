@@ -5,9 +5,9 @@ export async function searchData(query: string) {
 
     try {
         const response = await api.get(`/users?q=${query}`);
-        
+
         return {
-            data: response.data,
+            data: response.data.message,
             status: response.status
         }
     } catch (error) {

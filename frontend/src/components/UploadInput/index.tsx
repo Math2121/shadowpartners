@@ -1,10 +1,17 @@
 import { enqueueSnackbar } from 'notistack';
 import { useRef, useState } from 'react';
 import './style.css'
+import { sendFile } from '../../services/requests/sendFileRequest';
 
 export default function UploadInput() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.files?.[0])
+    const file = event.target.files?.[0];
+    setSelectedFile(file || null);
+  };
 
   const handleFileSelect = () => {
     if (fileInputRef.current) {
@@ -12,22 +19,36 @@ export default function UploadInput() {
     }
   };
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
-    setSelectedFile(file)
+  const handleFileUpload = async () => {
 
-    if (file?.type !== 'text/csv') {
+    if (selectedFile?.type !== 'text/csv') {
       enqueueSnackbar('Only csv file accepted', {
         preventDuplicate: true,
         variant: 'warning'
       })
       return;
     }
-    console.log('oi')
+    const formData = new FormData();
+    formData.append('file', selectedFile);
 
+    const response = await sendFile(formData);
+
+    if (response.status !== 500) {
+      enqueueSnackbar('File uploaded', {
+        preventDuplicate: true,
+        variant: 'success'
+      })
+      setSelectedFile(null)
+      return
+    }
+    enqueueSnackbar('An error occur', {
+      preventDuplicate: true,
+      variant: 'error'
+    })
+    setSelectedFile(null)
 
   };
-
+  console.log("dd", selectedFile === null)
   return (
     <>
       <div className="content-file container">
@@ -36,14 +57,14 @@ export default function UploadInput() {
           accept=".csv"
           ref={fileInputRef}
           style={{ display: 'none' }}
-          onChange={handleFileUpload}
+          onChange={handleFileSelection}
         />
         <button className="buttonFile" onClick={handleFileSelect}>
           {selectedFile ? selectedFile.name : 'Select CSV File'}</button>
 
         <button
-          onClick={() => handleFileUpload}
-          disabled={!selectedFile}
+          onClick={handleFileUpload}
+          disabled={selectedFile === null}
           className="send-button">Upload File</button>
       </div>
     </>
